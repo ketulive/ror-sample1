@@ -3,7 +3,8 @@
 %dl
   - @images.each do |image|
     %dt= image.title
-    %dd= image_tag image.url
+    %dd
+      = link_to image do
+        = image_tag image.url
 
 = link_to "画像を投稿する", new_image_path
-
