@@ -1,0 +1,6 @@
+%h1
+  画像一覧
+%dl
+  - @images.each do |image|
+    %dt= image.title
+    %dd= image_tag image.url
