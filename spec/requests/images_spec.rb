@@ -15,4 +15,23 @@ RSpec.describe Image, type: :request do
                                )
     end
   end
+
+  describe "GET /images/:id.json" do
+    let!(:comment) { image.comments.create!(body: "test") }
+
+    it "return json" do
+      get "/images/#{image.id}.json"
+      expect(response.body).to be_json(
+                                 id: image.id,
+                                 title: "test",
+                                 url: "http://example.com/",
+                                 comments: [
+                                   {
+                                     id: comment.id,
+                                     body: "test",
+                                   },
+                                 ],
+                               )
+    end
+  end
 end
