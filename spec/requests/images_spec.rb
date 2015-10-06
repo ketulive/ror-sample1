@@ -34,4 +34,11 @@ RSpec.describe Image, type: :request do
                                )
     end
   end
+
+  describe "POST /images.json" do
+    it "create images" do
+      post "/images.json", image: { url: "http://example.com/", title: "test" }
+      expect(response.status).to be 201
+    end
+  end
 end

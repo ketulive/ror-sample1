@@ -9,7 +9,10 @@ class ImagesController < ApplicationController
 
   def create
     Image.create(params.require(:image).permit(:url, :title))
-    redirect_to action: :index
+    respond_to do |format|
+      format.html { redirect_to action: :index }
+      format.json { head 201 }
+    end
   end
 
   def show
